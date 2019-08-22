@@ -16,11 +16,9 @@ public class HomeController {
 
     @Autowired
     CarRepository carRepository;
-
     @RequestMapping("/")
-    public String carlist(Model model) {
-        model.addAttribute("cars", carRepository.findAll());
-        return "list";
+    public String index(){
+        return "index";
     }
 
     @GetMapping("/add")
@@ -56,10 +54,10 @@ public class HomeController {
        carRepository.deleteById(id);
         return "redirect:/";
     }
-    @RequestMapping("/login")
-    public String index(){
-        return "index";
 
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
     }
 }
 
