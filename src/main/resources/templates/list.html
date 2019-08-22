@@ -5,22 +5,22 @@
     <title>Title</title>
 </head>
 <body>
-<a href="/add">Add a Task</a> <br />
+<a href="/add">Add a Car</a> <br />
 <table>
         <tr>
-            <th>Taskname</th>
-            <th>Duedate</th>
-            <th>Priority</th>
+            <th>Caryear</th>
+            <th>Carmake</th>
+            <th>Carmodel</th>
             <td>Actions</td>
         </tr>
-    <tr th:each="todo : ${todos}">
-        <td th:text="${todo.taskname}"></td>
-        <td th:text="${todo.duedate}"></td>
-        <td th:text="${todo.priority}"></td>
+    <tr th:each="todo : ${car}">
+        <td th:text="${car.caryear}"></td>
+        <td th:text="${car.carmake}"></td>
+        <td th:text="${car.carmodel}"></td>
         <td>
-            <a th:href="@{/update/{id}(id=${todo.id})}">Update</a> -
-            <a th:href="@{/detail/{id}(id=${todo.id})}">Detail</a> -
-            <a th:href="@{/delete/{id}(id=${todo.id})}">Delete</a>
+            <a th:href="@{/update/{id}(id=${car.id})}">Update</a> -
+            <a th:href="@{/detail/{id}(id=${car.id})}">Detail</a> -
+            <a th:href="@{/delete/{id}(id=${car.id})}">Delete</a>
         </td></tr>
 
 </table>

@@ -1,6 +1,5 @@
 package com.example.demo;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,45 +15,45 @@ import javax.validation.Valid;
 public class HomeController {
 
     @Autowired
-    TodoRepository todoRepository;
+    CarRepository carRepository;
 
     @RequestMapping("/")
-    public String todoABC(Model model) {
-        model.addAttribute("todos", todoRepository.findAll());
+    public String carlist(Model model) {
+        model.addAttribute("cars", carRepository.findAll());
         return "list";
     }
 
     @GetMapping("/add")
-    public String todolist(Model model) {
+    public String carform(Model model) {
 
-        model.addAttribute("todo", new Todo());
-        return "todolist";
+        model.addAttribute("car", new Car());
+        return "carlist";
     }
 
     @PostMapping("/process")
-    public String processForm(@Valid Todo todo, BindingResult result){
+    public String processForm(@Valid Car car, BindingResult result){
         if (result.hasErrors()){
-            return "todolist";
+            return "carlist";
         }
-        todoRepository.save(todo);
+        carRepository.save(car);
         return "redirect:/";
     }
 
     @RequestMapping("/detail/{id}")
     public String showTask(@PathVariable("id") long id, Model model)
     {
-        model.addAttribute("todo", todoRepository.findById(id).get());
+        model.addAttribute("car", carRepository.findById(id).get());
         return "show";
     }
     @RequestMapping("/update/{id}")
     public String updateTask(@PathVariable("id") long id, Model model)
     {
-        model.addAttribute("todo", todoRepository.findById(id).get());
-        return "todolist";
+        model.addAttribute("car", carRepository.findById(id).get());
+        return "carlist";
     }
     @RequestMapping("/delete/{id}")
     public String delTask(@PathVariable("id") long id){
-       todoRepository.deleteById(id);
+       carRepository.deleteById(id);
         return "redirect:/";
     }
 }
