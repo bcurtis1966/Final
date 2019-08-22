@@ -56,5 +56,10 @@ public class HomeController {
        carRepository.deleteById(id);
         return "redirect:/";
     }
+    @RequestMapping("/login")
+    public String index(){
+        return "index";
+
+    }
 }
 
