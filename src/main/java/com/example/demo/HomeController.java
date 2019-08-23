@@ -15,49 +15,46 @@ import javax.validation.Valid;
 public class HomeController {
 
     @Autowired
-    CarRepository carRepository;
+    MessageRepository messageRepository;
+
     @RequestMapping("/")
-    public String index(){
-        return "index";
+    public String messagelist(Model model){
+        model.addAttribute("message", messageRepository.findAll());
+        return "messagelist";
     }
 
     @GetMapping("/add")
-    public String carform(Model model) {
+    public String messageform(Model model) {
 
-        model.addAttribute("car", new Car());
-        return "carlist";
+        model.addAttribute("message", new Message());
+        return "messagelist";
     }
 
     @PostMapping("/process")
-    public String processForm(@Valid Car car, BindingResult result){
+    public String processForm(@Valid Message message, BindingResult result){
         if (result.hasErrors()){
-            return "carlist";
+            return "messagelist";
         }
-        carRepository.save(car);
+        messageRepository.save(message);
         return "redirect:/";
     }
 
     @RequestMapping("/detail/{id}")
     public String showTask(@PathVariable("id") long id, Model model)
     {
-        model.addAttribute("car", carRepository.findById(id).get());
+        model.addAttribute("message", messageRepository.findById(id).get());
         return "show";
     }
     @RequestMapping("/update/{id}")
     public String updateTask(@PathVariable("id") long id, Model model)
     {
-        model.addAttribute("car", carRepository.findById(id).get());
-        return "carlist";
+        model.addAttribute("message", messageRepository.findById(id).get());
+        return "messagelist";
     }
     @RequestMapping("/delete/{id}")
     public String delTask(@PathVariable("id") long id){
-       carRepository.deleteById(id);
+       messageRepository.deleteById(id);
         return "redirect:/";
-    }
-
-    @RequestMapping("/login")
-    public String login(){
-        return "login";
     }
 }
 

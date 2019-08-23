@@ -5,10 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-< href="/">Show all Cars</a><br />
-    Taskname :"<span th:text="${car.caryear}" ></span><br />
-    Duedate  :"<span th:text="${car.carmake}" ></span><br />
-    Priority :"<span th:text="${car.carmodel}" ></span><br />
-    <a th:href="@{/delete/{id} (id=${car.id})}">Delete this car</a>
+< href="/">Show all Messages</a><br />
+    Content   :"<span th:text="${message.content}" ></span><br />
+    Postedate :"<span th:text="${message.postdate}" ></span><br />
+    Sentby    :"<span th:text="${message.sentby}" ></span><br />
+    <a th:href="@{/delete/{id} (id=${message.id})}">Delete this Message</a>
 </body>
 </html>
